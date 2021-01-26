@@ -34,4 +34,7 @@ s.compute();
 
 // display
 
+
 ```
+
+![Output](https://github.com/khayyam90/spectral-clustering-js/blob/master/examples/output.png)
