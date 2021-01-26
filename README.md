@@ -1,3 +1,5 @@
+![NPM](https://img.shields.io/npm/l/spectral-clustering-js)
+
 # Spectral clustering JS (TypeScript)
 
 This package aims to provide the spectral clustering feature. 
