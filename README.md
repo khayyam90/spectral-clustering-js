@@ -9,11 +9,12 @@ It is lightweight and has few dependancies on purpose. When transpiled it can ru
 * The packages computes the clustering and gives you a cluster id for each node of your graph. The computation uses the eigen vectors & eigen values and a 1D k-means clustering to separate the clusters. 
 * That's all, you can focus on the next step (display graph ? next pipeline step ? ...)
 
-## Features
+## Features
 * lightweight
-* abstract oriented, you can easily 
+* abstract oriented, you can easily use the clustering for everything else
+* allows to visualize the main sub-graphs
 
-## Example
+## Example
 
 ```javascript
 import { Graph,SpectralClustering } from "spectral-clustering-js";
