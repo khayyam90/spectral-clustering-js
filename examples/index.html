@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="fr-FR">
+    <head>
+        <title>Graph viewer</title>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/png" href="favicon.png">
+        <script src="dist/bundle.js" ></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">        
+    </head>
+<body>
+    <style>
+    .margin0{
+        margin:0;
+    }
+    </style>
+    
+    <div class="row margin0">
+        <div class="col-md-6 col-sm-12">
+            <canvas id="zone" width="800" height="800"></canvas>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <h2>Spectral clustering</h2>
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Graph size <span id="sizeLabel"></span></label>
+                    <input type="range" min="4" max="500" value="100" class="slider" id="graphSize">
+                </div>
+                <div class="btn btn-primary" id="runClustering">Find the clusters</div>
+            </form>
+        </div>
+    </div>
+    
+</body>
+
+</html>
