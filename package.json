@@ -26,5 +26,9 @@
   },
   "dependencies": {
     "ml-matrix": "*"
+  },
+  "engines": {    
+    "node": ">=14.10",    
+    "npm": ">=6.14.8"  
   }
 }
