@@ -1,0 +1,26 @@
+{
+  "name": "spectral-clustering-js",
+  "version": "0.0.1",
+  "description": "Spectral clustering package for TypeScript",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khayyam90/spectral-clustering-js.git"
+  },
+  "keywords": [],
+  "author": "Pierre SCHWARTZ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/khayyam90/spectral-clustering-js/issues"
+  },
+  "homepage": "https://github.com/khayyam90/spectral-clustering-js#readme",
+  "devDependencies": {
+    "typescript": "3.*"
+  },
+  "dependencies": {
+    "ml-matrix": "*"
+  }
+}
