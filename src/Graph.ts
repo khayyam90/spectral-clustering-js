@@ -1,28 +1,25 @@
 import { Node } from "./Node";
 
 export class Graph {	
-    private nodes = new Map<String, Node>();
-    
-    constructor(){
-    }
+    private nodes = new Map<string, Node>();
 
-	public generateRandom(maxCoords: Array<number>, nbNodes: number, nbLinksForeachNode: number){
+	public generateRandom(maxCoords: Array<number>, nbNodes: number, nbLinksForeachNode: number):void{
         this.nodes.clear();
 
         // generate two packets
 
         for (let i = 0; i<nbNodes; i++){
-            let randomCoords = new Array<number>();
-            maxCoords.forEach( (v,i) => {
-                let c = Math.floor(Math.random() * v);
+            const randomCoords = new Array<number>();
+            maxCoords.forEach( v => {
+                const c = Math.floor(Math.random() * v);
                 randomCoords.push(c);
             });
-            let n = new Node(randomCoords);
+            const n = new Node(randomCoords);
             this.addNode(n);
         }
         
         this.nodes.forEach( node1 => {
-            let nearest = this.getNearestNodes(node1, nbLinksForeachNode);
+            const nearest = this.getNearestNodes(node1, nbLinksForeachNode);
             nearest.forEach( n => {
                 node1.addConnectedNode(n);
                 n.addConnectedNode(node1);
@@ -30,7 +27,7 @@ export class Graph {
         });
     }
 
-    public addNode(node : Node){
+    public addNode(node : Node):void{
         this.nodes.set(node.getId(), node);
     }
 
@@ -42,17 +39,17 @@ export class Graph {
         let result = new Array<Node>();
 
         // let's calculate the distance for every node
-        let distances = new Map<String, number>();
-        this.nodes.forEach(function(value: Node, key: String){
+        const distances = new Map<string, number>();
+        this.nodes.forEach(function(value: Node, key: string){
             if (value.getId() != node.getId()){
-                let distance = node.getPoint().euclieanDistanceTo(value.getPoint());
+                const distance = node.getPoint().euclieanDistanceTo(value.getPoint());
                 distances.set(key, distance);
                 result.push(value);
             }
         }.bind(this));
 
         result = result.sort(function(a: Node, b : Node){
-            let less = distances.get(a.getId()) < distances.get(b.getId());
+            const less = distances.get(a.getId()) < distances.get(b.getId());
             if (less){
                 return -1;
             }else{

@@ -45,8 +45,8 @@ export class Utils {
      * @param defaults Merges two maps
      * @param requested 
      */
-    public static resolveRunningParameters(defaults: Map<String, any>, requested: Map<String, any>):Map<String, any>{
-        let result = new Map<String, any>();
+    public static resolveRunningParameters(defaults: Map<string, string|number>, requested: Map<string, string|number>):Map<string, string|number>{
+        const result = new Map<string, string|number>();
 
         defaults.forEach((v,k) => {
             if (requested.has(k)){

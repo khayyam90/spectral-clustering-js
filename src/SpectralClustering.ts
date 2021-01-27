@@ -17,12 +17,12 @@ export class SpectralClustering {
         this.graph = graph;
     }
 
-    public compute(options = new Map<String, any>()){
-        let defaultOptions = new Map<String, any>([
+    public compute(options = new Map<string, string|number>()):void{
+        const defaultOptions = new Map<string, string|number>([
             ["laplacianMatrix" , "connected"],
             ["maxClusters" , 8]
         ]);
-        let runningOptions = Utils.resolveRunningParameters(defaultOptions, options);
+        const runningOptions = Utils.resolveRunningParameters(defaultOptions, options);
 
         let laplacianMatrix = null; 
         if (runningOptions.get("laplacianMatrix") == "connected"){
@@ -31,36 +31,36 @@ export class SpectralClustering {
             laplacianMatrix = this.extractDistanceLaplacianMatrix();
         }
 
-        var eigen = new EigenvalueDecomposition(laplacianMatrix, {assumeSymmetric: true});
-        let nodes = this.graph.getNodes();
+        const eigen = new EigenvalueDecomposition(laplacianMatrix, {assumeSymmetric: true});
+        const nodes = this.graph.getNodes();
 
         // the eigen vectors & values are already sorted
         // there is not need to do it again
 
-        let fiedlerVector = eigen.eigenvectorMatrix.getColumn(1);
+        const fiedlerVector = eigen.eigenvectorMatrix.getColumn(1);
 
         // k-means to divide the FiedlerVector
 
-        let kmeanCluster = new Kmeans1D(fiedlerVector);
-        let clusterResult = kmeanCluster.findBestClustering( runningOptions.get("maxClusters") );
+        const kmeanCluster = new Kmeans1D(fiedlerVector);
+        const clusterResult = kmeanCluster.findBestClustering( <number>(runningOptions.get("maxClusters")) );
 
         for (let i = 0; i<fiedlerVector.length; i++){
-            let nodeI = nodes[i];
+            const nodeI = nodes[i];
             nodeI.setCluster(clusterResult[i]);
         }
     }
 
     private extractStrictLaplacianMatrix(): Matrix{
-        let result = new Matrix(this.graph.getNodes().length, this.graph.getNodes().length);
+        const result = new Matrix(this.graph.getNodes().length, this.graph.getNodes().length);
 
-        let nodes = this.graph.getNodes();
+        const nodes = this.graph.getNodes();
 
         for (let i = 0; i<nodes.length; i++){
-            let nodeI = nodes[i];
-            let connected = nodeI.getConnectedNodes();
+            const nodeI = nodes[i];
+            const connected = nodeI.getConnectedNodes();
 
             for (let j = 0; j<nodes.length; j++){
-                let nodeJ = nodes[j];
+                const nodeJ = nodes[j];
                 if (nodeI.isConnectedTo(nodeJ)){
                     result.set(i,j,-1);
                 }
@@ -76,23 +76,23 @@ export class SpectralClustering {
      * Build a matrix showing the distance of nodes
      */
     private extractDistanceLaplacianMatrix(): Matrix{
-        let result = new Matrix(this.graph.getNodes().length, this.graph.getNodes().length);
+        const result = new Matrix(this.graph.getNodes().length, this.graph.getNodes().length);
 
-        let nodes = this.graph.getNodes();
+        const nodes = this.graph.getNodes();
 
         for (let i = 0; i<nodes.length; i++){
-            let nodeI = nodes[i];
+            const nodeI = nodes[i];
             let sumDistances = 0;
 
             for (let j = 0; j<nodes.length; j++){
                 if (i != j){
-                    let nodeJ = nodes[j];
+                    const nodeJ = nodes[j];
 
                     if (nodeI.isConnectedTo(nodeJ)){
-                        let distance = nodeI.getPoint().euclieanDistanceTo(nodeJ.getPoint());
+                        const distance = nodeI.getPoint().euclieanDistanceTo(nodeJ.getPoint());
 
                         //let distanceInLaplacian = 1/distance;
-                        let distanceInLaplacian = 1/Math.log10(distance);
+                        const distanceInLaplacian = 1/Math.log10(distance);
 
                         result.set(i,j, -distanceInLaplacian);
                         

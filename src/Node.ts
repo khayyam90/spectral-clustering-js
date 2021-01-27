@@ -1,13 +1,13 @@
 import { Point } from "./Point";
 
 export class Node {	
-    private id: String;
-    private connectedNodes: Map<String, Node> = new Map<String, Node>();
+    private id: string;
+    private connectedNodes: Map<string, Node> = new Map<string, Node>();
     private coords: Point;
-    private color: String = "blue";
-    private cluster: number = 0;
+    private color = "blue";
+    private cluster = 0;
 
-    public getId(): String{
+    public getId(): string{
         return this.id;
     }
 
@@ -15,15 +15,15 @@ export class Node {
         return this.coords;
     }
 
-    public setColor(color: String){
+    public setColor(color: string):void{
         this.color = color;
     }
 
-    public getColor():String{
+    public getColor():string{
         return this.color;
     }
 
-    public setCluster(cluster: number){
+    public setCluster(cluster: number):void{
         this.cluster = cluster;
     }
 
@@ -31,15 +31,15 @@ export class Node {
         return this.cluster;
     }
 
-    public addConnectedNode(node: Node){
+    public addConnectedNode(node: Node):void{
         this.connectedNodes.set(node.getId(), node);        
     }
 
-    public isConnectedTo(node: Node){
+    public isConnectedTo(node: Node):boolean{
         return this.connectedNodes.has(node.getId());
     }
 
-    public getConnectedNodes():Map<String, Node> {
+    public getConnectedNodes():Map<string, Node> {
         return this.connectedNodes;
     }
 

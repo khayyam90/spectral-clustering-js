@@ -14,13 +14,13 @@ export class Kmeans1D {
         this.amplitude = this.max - this.min;
     }
 
-    public findBestClustering(maxClusters: number = 10){
-        let results : Array<Array<number>> = [];
-        let distances : Array<number> = [];
+    public findBestClustering(maxClusters = 10):Array<number>{
+        const results : Array<Array<number>> = [];
+        const distances : Array<number> = [];
         for (let c = 2; c < maxClusters; c++){
-            let tmpResult = this.tryToCluster(c);
-            let affectations = tmpResult[0];
-            let centroids = tmpResult[1];
+            const tmpResult = this.tryToCluster(c);
+            const affectations = tmpResult[0];
+            const centroids = tmpResult[1];
 
             // calculate the total distance from points to centroids
             let totalDistance = 0;
@@ -33,14 +33,14 @@ export class Kmeans1D {
         }
 
         // elbow method to find the best cluster size
-        let curveDifference : Array<number> = [];
+        const curveDifference : Array<number> = [];
         for (let d = 1; d < distances.length-1; d++){
-            let descending1 = distances[d] - distances[d-1];
-            let descending2 = distances[d+1] - distances[d];
+            const descending1 = distances[d] - distances[d-1];
+            const descending2 = distances[d+1] - distances[d];
             curveDifference.push(  descending2 - descending1);
         }
 
-        let bestCurveDifference = Utils.maxIndex(curveDifference);
+        const bestCurveDifference = Utils.maxIndex(curveDifference);
 
         return results[bestCurveDifference+1];
     }
@@ -51,8 +51,8 @@ export class Kmeans1D {
      * @returns [centroidsForPoints, centroids]
      */
     private tryToCluster(nbClusters: number ) {
-        let centroids: Array<number> = [];
-        let pointsForCentroid : Array<Array<number>> = [];
+        const centroids: Array<number> = [];
+        const pointsForCentroid : Array<Array<number>> = [];
 
         // initialize the centroids randomly
         for (let i = 0; i<nbClusters; i++){
@@ -72,17 +72,17 @@ export class Kmeans1D {
 
             // associate each point to the nearest centroid
             for (let itemIndex = 0; itemIndex < this.items.length; itemIndex++){
-                let itemValue = this.items[itemIndex];
+                const itemValue = this.items[itemIndex];
                 let minDistance: number = Number.MAX_VALUE;
                 let nearestCentroid = 0;
 
                 for (let centroidIndex = 0; centroidIndex < centroids.length; centroidIndex++){
-                    let d = Math.abs(  centroids[centroidIndex] - itemValue  );
+                    const d = Math.abs(  centroids[centroidIndex] - itemValue  );
                     if (d < minDistance || minDistance == null){
                         minDistance = d;
                         nearestCentroid = centroidIndex;
                     }
-                };
+                }
                 
                 centroidForPoints.push(nearestCentroid);
 
@@ -93,7 +93,7 @@ export class Kmeans1D {
                     }
 
                 pointsForCentroid[nearestCentroid].push(itemValue);
-            }; 
+            } 
 
             previousCentroidForPoints = centroidForPoints;
 
