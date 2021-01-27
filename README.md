@@ -19,6 +19,7 @@ npm install spectral-clustering-js
 ## Features
 * lightweight ;
 * can manage n dimensions points ;
+* find a given number of clusters or finds the best number of clusters ;
 * abstract oriented, you can easily use the clustering for anything else ;
 * allows to visualize the main sub-graphs.
 
@@ -31,7 +32,14 @@ let graph = new Graph();
 // create nodes, link your nodes ...
 
 let s = new SpectralClustering(graph);
-s.compute();
+const options = new Map<string, string|number>([
+    ["requestedNbClusters", 4],  // to find exactly 4 clusters. Do not set to let the package find how many clusters
+    ["maxClusters", 6], // do not find more than 6 clusters (only if requestedNbClusters is not set)
+    ["laplacianMatrix", "connected"]    // consider the connections between nodes without considering the distance between them. Set "distance" to considers the distance between the nodes.
+]);
+s.compute(options);
+
+// at this point, each node in the graph has an integer cluster property
 
 // display
 ```

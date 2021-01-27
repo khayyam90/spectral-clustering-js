@@ -1,5 +1,9 @@
 import { Utils } from "./Utils";
 
+/**
+ * This class can find the clustering for n clusters OR
+ *    can find the best clustering for [2..n] clusters
+ */
 export class Kmeans1D {	
     private items: number[];
     private min : number;
@@ -46,11 +50,11 @@ export class Kmeans1D {
     }
 
     /**
-     * Finds the best clustering into $nbClusters clusters
+     * Finds the best clustering with $nbClusters clusters
      * @param nbClusters 
      * @returns [centroidsForPoints, centroids]
      */
-    private tryToCluster(nbClusters: number ) {
+    public tryToCluster(nbClusters: number ) : [Array<number>, Array<number>]{
         const centroids: Array<number> = [];
         const pointsForCentroid : Array<Array<number>> = [];
 

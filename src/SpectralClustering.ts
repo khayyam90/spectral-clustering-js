@@ -20,6 +20,7 @@ export class SpectralClustering {
     public compute(options = new Map<string, string|number>()):void{
         const defaultOptions = new Map<string, string|number>([
             ["laplacianMatrix" , "connected"],
+            ["requestedNbClusters", -1],
             ["maxClusters" , 8]
         ]);
         const runningOptions = Utils.resolveRunningParameters(defaultOptions, options);
@@ -42,7 +43,16 @@ export class SpectralClustering {
         // k-means to divide the FiedlerVector
 
         const kmeanCluster = new Kmeans1D(fiedlerVector);
-        const clusterResult = kmeanCluster.findBestClustering( <number>(runningOptions.get("maxClusters")) );
+
+        // is the number of clusters already known ?
+        const requestedNbClusters = <number>(runningOptions.get("requestedNbClusters"));
+        let clusterResult = null;
+        if (requestedNbClusters == -1){
+            clusterResult = kmeanCluster.findBestClustering( <number>(runningOptions.get("maxClusters")) );
+        }else{
+            // the methods returns [clusters, centroids], let's keep the clusters only
+            clusterResult = kmeanCluster.tryToCluster(requestedNbClusters)[0];
+        }
 
         for (let i = 0; i<fiedlerVector.length; i++){
             const nodeI = nodes[i];
