@@ -1,21 +1,29 @@
 export class Point {	    
-    private x: number;
-    private y: number;
+    private coords: Array<number>;
 
     public getX(): number{
-        return this.x;
+        return this.coords[0];
     }
 
     public getY(): number{
-        return this.y;
+        return this.coords[1];
+    }
+
+    public get(i: number):number{
+        return this.coords[i];
     }
 
     public euclieanDistanceTo(p : Point): number{
-        return Math.sqrt( (this.x - p.getX())*(this.x - p.getX()) + (this.y - p.getY())*(this.y - p.getY()));
+        // let's assume both points have the same dimension
+        let sum = 0;
+        for (let i = 0; i<this.coords.length; i++){
+            sum += (p.get(i) - this.get(i)) * (p.get(i) - this.get(i));
+        }
+
+        return Math.sqrt(sum);
     }
 
-    constructor(x: number, y: number){
-        this.x = x;
-        this.y = y;
+    constructor(coords: Array<number>){
+        this.coords = coords;
     }
 }

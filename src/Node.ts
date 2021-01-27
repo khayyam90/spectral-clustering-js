@@ -43,8 +43,8 @@ export class Node {
         return this.connectedNodes;
     }
 
-    constructor(x: number, y: number){
-        this.coords = new Point(x,y);
+    constructor(coords: Array<number>){
+        this.coords = new Point(coords);
         this.id = Math.floor(Math.random() * Date.now()).toString();
     }
 }

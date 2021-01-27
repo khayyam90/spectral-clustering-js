@@ -6,27 +6,19 @@ export class Graph {
     constructor(){
     }
 
-	public generateRandom(maxX: number, maxY: number, nbNodes: number, nbLinksForeachNode: number){
+	public generateRandom(maxCoords: Array<number>, nbNodes: number, nbLinksForeachNode: number){
         this.nodes.clear();
 
         // generate two packets
 
-        let center1 = [maxX/4, maxY/2];
-        for (let i = 0; i<nbNodes /2; i++){
-            let x = center1[0] + Math.floor(maxX /2 * Math.random()) - maxX/4;
-            let y = center1[1] + Math.floor(maxY /2 * Math.random()) - maxY/4;
-
-            let node = new Node(x,y);
-            this.addNode(node);
-        }
-
-        let center2 = [3*maxX/4, maxY/2];
-        for (let i = 0; i<nbNodes /2; i++){
-            let x = center2[0] + Math.floor(maxX /2 * Math.random()) - maxX/4;
-            let y = center2[1] + Math.floor(maxY /2 * Math.random()) - maxY/4;
-
-            let node = new Node(x,y);
-            this.addNode(node);
+        for (let i = 0; i<nbNodes; i++){
+            let randomCoords = new Array<number>();
+            maxCoords.forEach( (v,i) => {
+                let c = Math.floor(Math.random() * v);
+                randomCoords.push(c);
+            });
+            let n = new Node(randomCoords);
+            this.addNode(n);
         }
         
         this.nodes.forEach( node1 => {
