@@ -18,6 +18,7 @@ npm install spectral-clustering-js
 
 ## Features
 * lightweight ;
+* can manage n dimensions points ;
 * abstract oriented, you can easily use the clustering for anything else ;
 * allows to visualize the main sub-graphs.
 
