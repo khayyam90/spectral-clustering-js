@@ -22,7 +22,7 @@ npm install spectral-clustering-js
 * abstract oriented, you can easily use the clustering for anything else ;
 * allows to visualize the main sub-graphs.
 
-## Example
+## Usage
 
 ```javascript
 import { Graph,SpectralClustering } from "spectral-clustering-js";
@@ -34,8 +34,12 @@ let s = new SpectralClustering(graph);
 s.compute();
 
 // display
-
-
 ```
+
+## Example
+[A web based graph generator & cluster viewer](https://github.com/khayyam90/spectral-clustering-js-example)
+
+
+
 
 ![Output](https://github.com/khayyam90/spectral-clustering-js/blob/master/examples/output.png)
