@@ -1,4 +1,6 @@
 ![NPM](https://img.shields.io/npm/l/spectral-clustering-js)
+![CodeClimate](https://img.shields.io/codeclimate/maintainability/khayyam90/spectral-clustering-js)
+![Github Language](https://img.shields.io/github/languages/top/khayyam90/spectral-clustering-js)
 
 # Spectral clustering JS (TypeScript)
 
@@ -19,7 +21,7 @@ npm install spectral-clustering-js
 ## Features
 * lightweight ;
 * can manage n dimensions points ;
-* find a given number of clusters or finds the best number of clusters ;
+* finds a given number of clusters or finds the best number of clusters ;
 * abstract oriented, you can easily use the clustering for anything else ;
 * allows to visualize the main sub-graphs.
 
